@@ -9,7 +9,7 @@ class CProfessionnels : public Contact
 private:
     string nomE;
     string mail;
-    Adress addr;
+    Adress *addr;
 public:
     CProfessionnels(string, string, Adress, int, string, string, char);
     ~CProfessionnels();
@@ -17,8 +17,8 @@ public:
     void setNomE(const string &value);
     string getMail() const;
     void setMail(const string &value);
-    Adress getAddr() const;
-    void setAddr(const Adress &value);
+    Adress *getAddr() const;
+    void setAddr(Adress *value);
 };
 
 #endif // CPROFESSIONNELS_H
