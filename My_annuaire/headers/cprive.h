@@ -7,13 +7,13 @@
 class CPrive : public Contact
 {
 private:
-    Adress addr;
+    Adress *addr;
     string date_naissance;
 public:
-    CPrive();
+    CPrive(Adress, string, int, string, string, char);
     ~CPrive();
-    Adress getAddr() const;
-    void setAddr(const Adress &value);
+    Adress *getAddr() const;
+    void setAddr(Adress *value);
     string getDate_naissance() const;
     void setDate_naissance(const string &value);
 };

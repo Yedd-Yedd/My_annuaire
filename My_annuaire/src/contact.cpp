@@ -1,15 +1,18 @@
 #include "../headers/contact.h"
 
 #include <QDebug>
-#include <string>
-#include <stdio.h>
 
 Contact::Contact(int id, string nom, string prenom, char genre)
 {
+    qDebug()<<"1";
     this->setId(id);
+    qDebug()<<"2";
     this->setNom(nom);
+    qDebug()<<"3";
     this->setPrenom(prenom);
+    qDebug()<<"4";
     this->setGenre(genre);
+    qDebug()<<"5";
 }
 
 string Contact::getNom() const
@@ -56,13 +59,7 @@ char Contact::getGenre() const
 
 void Contact::setGenre(char value)
 {
-    if( (value=='f') or (value=='F') or (value=='h') or (value=='H')){
-        genre = toupper(value);
-    }
-    else{
-        throw "Erreur dans le genre";
-    }
-
+    genre = toupper(value);
 }
 
 int Contact::getId() const

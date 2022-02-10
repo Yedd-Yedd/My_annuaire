@@ -1,17 +1,20 @@
 #include "headers/cprive.h"
 #include "headers/adress.h"
 
-CPrive::CPrive()
-{
+CPrive::CPrive(Adress addr, string date, int id, string nom, string prenom, char genre):
+Contact(id, nom, prenom, genre)
 
+{
+    this->setAddr(addr);
+    this->setDate_naissance(date);
 }
 
-Adress CPrive::getAddr() const
+Adress* CPrive::getAddr() const
 {
     return addr;
 }
 
-void CPrive::setAddr(const Adress &value)
+void CPrive::setAddr(Adress *value)
 {
     addr = value;
 }
