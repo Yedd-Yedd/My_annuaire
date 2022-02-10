@@ -1,8 +1,18 @@
-#include "contact.h"
+#include "../headers/contact.h"
 
-Contact::Contact()
+#include <QDebug>
+
+Contact::Contact(int id, string nom, string prenom, char genre)
 {
-
+    qDebug()<<"1";
+    this->setId(id);
+    qDebug()<<"2";
+    this->setNom(nom);
+    qDebug()<<"3";
+    this->setPrenom(prenom);
+    qDebug()<<"4";
+    this->setGenre(genre);
+    qDebug()<<"5";
 }
 
 string Contact::getNom() const
@@ -12,7 +22,16 @@ string Contact::getNom() const
 
 void Contact::setNom(const string &value)
 {
-    nom = value;
+    string res=value;
+    if(value.length()<=30){
+        for(int i=0;i<res.length();i++){
+            res[i]=toupper(res[i]);
+            this->nom=res;
+        }
+    }
+    else{
+        throw "Erreur dans le Nom";
+    }
 }
 
 string Contact::getPrenom() const
@@ -22,7 +41,15 @@ string Contact::getPrenom() const
 
 void Contact::setPrenom(const string &value)
 {
-    prenom = value;
+    string res=value;
+    if(value.length()<=30){
+        res[0]=toupper(value[0]);
+        this->prenom=res;
+    }
+    else{
+        throw "Erreur dans le prenom";
+    }
+
 }
 
 char Contact::getGenre() const
@@ -32,7 +59,7 @@ char Contact::getGenre() const
 
 void Contact::setGenre(char value)
 {
-    genre = value;
+    genre = toupper(value);
 }
 
 int Contact::getId() const
@@ -44,3 +71,14 @@ void Contact::setId(int value)
 {
     id = value;
 }
+
+string Contact::toString()
+{
+    ostringstream  oss;
+    oss << "Id : "<<this->getId()<<endl;
+    oss << "Nom : "<<this->getNom()<<endl;
+    oss << "Prenom : "<<this->getPrenom()<<endl;
+    oss << "Genre : : "<<this->getGenre()<<endl;
+    return oss.str();
+}
+
