@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "headers/contact.h"
 #include "headers/adress.h"
+#include "headers/cprive.h"
 #include "headers/cprofessionnels.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,7 +20,11 @@ MainWindow::MainWindow(QWidget *parent) :
     qDebug()<<"----------------------Pro---------------------";
     CProfessionnels *pro=new CProfessionnels("entr","entre@mail.fr",a,1,"jeanne","aurelien",'h');
     qDebug()<< QString::fromStdString(pro->toString());
+    
+    CPrive *b = new CPrive(a, "22/01/4199", 1, "Ted", "Tedd", 'h');
+
 }
+
 
 MainWindow::~MainWindow()
 {
