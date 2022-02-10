@@ -17,37 +17,21 @@
    <widget class="QListView" name="listView">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>20</y>
+      <x>60</x>
+      <y>40</y>
       <width>256</width>
       <height>192</height>
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>40</y>
-      <width>47</width>
-      <height>13</height>
+      <y>10</y>
+      <width>131</width>
+      <height>31</height>
      </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>110</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
     </property>
    </widget>
   </widget>
