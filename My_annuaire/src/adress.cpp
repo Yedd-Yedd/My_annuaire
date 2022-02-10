@@ -1,9 +1,16 @@
 #include "headers/adress.h"
 
-string Adress::getLibel() const
+#include <QDebug>
+
+Adress::Adress(int num, string libel, string cp, string ville, string comp)
 {
-    return libel;
+    this->setAddr_num(num);
+    this->setCp(cp);
+    this->setLibel(libel);
+    this->setVille(ville);
+    this->setComp(comp);
 }
+
 
 void Adress::setLibel(const string &value)
 {
@@ -37,12 +44,13 @@ string Adress::getCp() const
 
 void Adress::setCp(const string &value)
 {
-    cp = value;
-}
-
-Adress::Adress()
-{
-
+    qDebug()<<value.length();
+    if(value.length()==5){
+        cp = value;
+    }
+    else{
+        throw "Erreur dans le cp";
+    }
 }
 
 int Adress::getAddr_num() const
@@ -53,4 +61,13 @@ int Adress::getAddr_num() const
 void Adress::setAddr_num(int value)
 {
     addr_num = value;
+}
+
+string Adress::toString()
+{
+    ostringstream oss;
+    oss<<"Adresse : "<<this->getAddr_num()<<" "<<this->getLibel()<<" "<<getComp()<<endl;
+    oss<<"Code postal : "<<this->getCp();
+    oss<<"Ville : "<<this->getVille();
+    return oss.str();
 }
