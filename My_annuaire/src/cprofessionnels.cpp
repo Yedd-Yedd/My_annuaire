@@ -23,7 +23,7 @@ void CProfessionnels::setNomE(const string &value)
         this->nomE=res;
     }
     else{
-        throw "Erreur dans le Nom";
+        throw "Erreur dans le Nom de l'entreprise";
     }
 }
 

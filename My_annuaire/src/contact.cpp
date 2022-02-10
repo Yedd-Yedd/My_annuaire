@@ -10,10 +10,10 @@ Contact::Contact(int id, string nom, string prenom, char genre)
     this->setGenre(genre);
 }
 
-Contact::~Contact()
+/*Contact::~Contact()
 {
 
-}
+}*/
 
 string Contact::getNom() const
 {
