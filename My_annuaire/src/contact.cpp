@@ -15,6 +15,11 @@ Contact::Contact(int id, string nom, string prenom, char genre)
     qDebug()<<"5";
 }
 
+Contact::~Contact()
+{
+
+}
+
 string Contact::getNom() const
 {
     return nom;

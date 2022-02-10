@@ -63,6 +63,11 @@ void Adress::setAddr_num(int value)
     addr_num = value;
 }
 
+string Adress::getLibel() const
+{
+    return libel;
+}
+
 string Adress::toString()
 {
     ostringstream oss;

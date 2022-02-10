@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "headers/contact.h"
 #include "headers/adress.h"
+#include "headers/cprive.h"
+#include "headers/cprofessionnels.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,7 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
     Adress *a = new Adress(3,"place truc","14400","Bayeux");
     qDebug()<< QString::fromStdString(a->toString());
     
+    CPrive *b = new CPrive(a, "22/01/4199", 1, "Ted", "Tedd", 'h');
+
 }
+
 
 MainWindow::~MainWindow()
 {
