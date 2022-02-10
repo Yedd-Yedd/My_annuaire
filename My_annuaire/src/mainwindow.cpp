@@ -11,6 +11,22 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+
+    if(mydb.open()){
+        qDebug() << "DB ouverts";
+
+        QSqlQueryModel *model= new QSqlQueryModel();
+        model->setQuery("SELECT idContact, nom, prenom FROM contacts");
+
+        ui->listContact->setModel(model);
+        ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    }
+    else{
+        qDebug() << "Err ouverture";
+    }
+
     Contact *c = new Contact(1,"jeanne","aurelien",'h');
     qDebug()<< QString::fromStdString(c->toString());
 
