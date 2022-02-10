@@ -4,15 +4,10 @@
 
 Contact::Contact(int id, string nom, string prenom, char genre)
 {
-    qDebug()<<"1";
     this->setId(id);
-    qDebug()<<"2";
     this->setNom(nom);
-    qDebug()<<"3";
     this->setPrenom(prenom);
-    qDebug()<<"4";
     this->setGenre(genre);
-    qDebug()<<"5";
 }
 
 string Contact::getNom() const
@@ -26,8 +21,8 @@ void Contact::setNom(const string &value)
     if(value.length()<=30){
         for(int i=0;i<res.length();i++){
             res[i]=toupper(res[i]);
-            this->nom=res;
         }
+        this->nom=res;
     }
     else{
         throw "Erreur dans le Nom";
