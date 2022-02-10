@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include <QDebug>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
+
 
 namespace Ui {
 class MainWindow;
@@ -15,6 +19,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
 
 private:
     Ui::MainWindow *ui;

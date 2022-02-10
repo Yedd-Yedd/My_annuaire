@@ -1,0 +1,17 @@
+TODO LEFT
+
+-la recherche de contact
+-l'ajout/suppression contact
+-event affichage dans le label du 
+contact sélectionné pour plus dinfos
+-radio afficher contact privés et/ou pro
+
+BONUS 1
+-README
+-bonus image utilisateur
+-Css 
+-extend class expection
+
+
+BONUS DERNIER
+-regex ULTIME DE LA MORT DES MAILS QUI EXISTE
