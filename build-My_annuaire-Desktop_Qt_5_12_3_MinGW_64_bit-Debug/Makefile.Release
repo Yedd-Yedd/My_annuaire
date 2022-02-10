@@ -355,7 +355,7 @@ release/main.o: ../My_annuaire/src/main.cpp ../My_annuaire/mainwindow.h \
 		../../../../Qt/Qt5.12.3/5.12.3/mingw73_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\My_annuaire\src\main.cpp
 
-release/mainwindow.o: ../My_annuaire/src/mainwindow.cpp ../My_annuaire/mainwindow.h \
+release/mainwindow.o: ../My_annuaire/src/mainwindow.cpp ../My_annuaire/headers/mainwindow.h \
 		../../../../Qt/Qt5.12.3/5.12.3/mingw73_64/include/QtWidgets/QMainWindow \
 		../../../../Qt/Qt5.12.3/5.12.3/mingw73_64/include/QtWidgets/qmainwindow.h \
 		../../../../Qt/Qt5.12.3/5.12.3/mingw73_64/include/QtWidgets/qtwidgetsglobal.h \

@@ -1,0 +1,29 @@
+#ifndef CONTACT_H
+#define CONTACT_H
+
+#include <iostream>
+
+using namespace std;
+
+class Contact
+{
+private:
+    string nom;
+    string prenom;
+    char genre;
+    int id;
+public:
+    Contact();
+    ~Contact();
+    
+    string getNom() const;
+    void setNom(const string &value);
+    string getPrenom() const;
+    void setPrenom(const string &value);
+    char getGenre() const;
+    void setGenre(char value);
+    int getId() const;
+    void setId(int value);
+};
+
+#endif // CONTACT_H
