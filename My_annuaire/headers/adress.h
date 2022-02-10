@@ -17,6 +17,7 @@ private:
 public:
     Adress();
     ~Adress();
+
     int getAddr_num() const;
     void setAddr_num(int value);
     string getLibel() const;

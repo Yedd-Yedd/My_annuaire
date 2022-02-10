@@ -24,3 +24,23 @@ void CPrive::setDate_naissance(const string &value)
 {
     date_naissance = value;
 }
+
+Adress CPrive::getAddr() const
+{
+    return addr;
+}
+
+void CPrive::setAddr(const Adress &value)
+{
+    addr = value;
+}
+
+string CPrive::getDate() const
+{
+    return date;
+}
+
+void CPrive::setDate(const string &value)
+{
+    date = value;
+}

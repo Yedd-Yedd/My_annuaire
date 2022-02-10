@@ -1,18 +1,14 @@
-#include "../headers/cprofessionnels.h"
+#include "headers/cprofessionnels.h"
 
-CProfessionnels::CProfessionnels()
+
+Adress CProfessionnels::getAddr() const
 {
-
+    return addr;
 }
 
-string CProfessionnels::getNomE() const
+void CProfessionnels::setAddr(const Adress &value)
 {
-    return nomE;
-}
-
-void CProfessionnels::setNomE(const string &value)
-{
-    nomE = value;
+    addr = value;
 }
 
 string CProfessionnels::getMail() const
@@ -25,12 +21,12 @@ void CProfessionnels::setMail(const string &value)
     mail = value;
 }
 
-Adress CProfessionnels::getAddr() const
+string CProfessionnels::getNomE() const
 {
-    return addr;
+    return nomE;
 }
 
-void CProfessionnels::setAddr(const Adress &value)
+void CProfessionnels::setNomE(const string &value)
 {
-    addr = value;
+    nomE = value;
 }

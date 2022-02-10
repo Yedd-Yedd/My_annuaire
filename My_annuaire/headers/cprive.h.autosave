@@ -1,21 +1,22 @@
 #ifndef CPRIVE_H
 #define CPRIVE_H
 
-#include "contact.h"
-#include "adress.h"
+#include "headers/contact.h"
+#include "headers/adress.h"
 
 class CPrive : public Contact
 {
+ 
 private:
     Adress addr;
-    string date_naissance;
+    string date;
 public:
     CPrive();
     ~CPrive();
     Adress getAddr() const;
     void setAddr(const Adress &value);
-    string getDate_naissance() const;
-    void setDate_naissance(const string &value);
+    string getDate() const;
+    void setDate(const string &value);
 };
 
 #endif // CPRIVE_H
