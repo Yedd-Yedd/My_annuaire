@@ -25,14 +25,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += src/main.cpp \
-<<<<<<< HEAD
            src/adress.cpp \
            src/contact.cpp \
-           src/cprive.cpp \
-           src/cprofessionnels.cpp \
-=======
->>>>>>> 531dbb158c3debc6bcf93c73a56c27de5014f188
-           src/mainwindow.cpp
+           src/mainwindow.cpp \
 
 HEADERS += headers/mainwindow.h \
     headers/adress.h \
