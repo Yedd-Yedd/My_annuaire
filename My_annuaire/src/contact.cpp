@@ -59,7 +59,12 @@ char Contact::getGenre() const
 
 void Contact::setGenre(char value)
 {
-    genre = toupper(value);
+    if(value=='h' or value=='H' or value=='f' or value=='F'){
+        genre = toupper(value);
+    }
+    else{
+        throw "Erreur dans le genre";
+    }
 }
 
 int Contact::getId() const
