@@ -11,14 +11,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->chkPro,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
 
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
-<<<<<<< HEAD
+
     // bon path si le dossier build est au dessus de : /My_annuaire/BDD/ dans larbre
     this->mydb.setDatabaseName("../My_annuaire/BDD/dbContacts.db");
-=======
 
-    this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
-    //this->mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
->>>>>>> 68341e963406037598733d95f211283f134ec9d9
+
 
     if(this->mydb.open()){
         qDebug() << "DB ouverts";
@@ -163,8 +160,6 @@ void MainWindow::on_listContact_doubleClicked(const QModelIndex &index)
     this->mydb.close();
 }
 
-
-<<<<<<< HEAD
 void MainWindow::on_btnSupprimer_clicked()
 {
     QString rowidx = ui->listContact->selectionModel()->currentIndex().data(0).toString();
@@ -189,7 +184,7 @@ void MainWindow::on_btnSupprimer_clicked()
             this->mydb.close();
         }
 }
-=======
+
 void MainWindow::on_btnAjouter_clicked()
 {
     ajout_contact fenetre_ajout(this);
@@ -212,5 +207,3 @@ void MainWindow::on_btnAjouter_clicked()
     }
 
 }
-
->>>>>>> 68341e963406037598733d95f211283f134ec9d9

@@ -71,7 +71,7 @@ string Adress::getLibel() const
 string Adress::toString()
 {
     ostringstream oss;
-    oss<<"Adresse : "<<this->getAddr_num()<<" "<<this->getLibel()<<" "<<getComp()<<endl;
+    oss<<"Adresse : "<<this->getLibel()<<" "<<getComp()<<endl;
     oss<<"Code postal : "<<this->getCp();
     oss<<"Ville : "<<this->getVille();
     return oss.str();

@@ -41,11 +41,8 @@ private slots:
 
     void on_leChercheNom_textChanged(const QString &arg1);
 
-<<<<<<< HEAD
     void on_btnSupprimer_clicked();
-=======
     void on_btnAjouter_clicked();
->>>>>>> 68341e963406037598733d95f211283f134ec9d9
 
 private:
     Ui::MainWindow *ui;
