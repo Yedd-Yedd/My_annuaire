@@ -12,8 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-
     connect(ui->chkPrive,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
     connect(ui->chkPro,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
 
@@ -49,6 +47,11 @@ MainWindow::MainWindow(QWidget *parent) :
     
     CPrive *b = new CPrive(a, "22/01/4199", 1, "Ted", "Tedd", 'h');
 
+}
+
+QSqlDatabase MainWindow::getbdd()
+{
+    return this->mydb;
 }
 
 
@@ -98,6 +101,7 @@ void MainWindow::on_leChercheNom_textChanged(const QString &arg1)
         ui->listContact->setModel(model);
         ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     }
+    mydb.close();
 }
 
 QString MainWindow::setQueryget()
@@ -161,5 +165,29 @@ void MainWindow::on_listContact_doubleClicked(const QModelIndex &index)
     ui->label->setText(infos);
     this->mydb.close();
     qDebug() << id;
+}
+
+
+void MainWindow::on_btnAjouter_clicked()
+{
+    ajout_contact fenetre_ajout(this);
+    fenetre_ajout.setModal(true);
+    fenetre_ajout.exec();
+    ui->listContact->reset();
+    if(this->mydb.open()){
+        qDebug() << "DB ouverts";
+
+        QSqlQueryModel *model= new QSqlQueryModel();
+        model->setQuery("SELECT idContact, nom, prenom, entreprise FROM contacts");
+
+        ui->listContact->setModel(model);
+        ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+        this->mydb.close();
+    }
+    else{
+        qDebug() << "Err ouverture";
+    }
+
 }
 

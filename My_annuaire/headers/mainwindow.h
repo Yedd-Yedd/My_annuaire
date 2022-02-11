@@ -7,6 +7,8 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 
+#include "headers/ajout_contact.h"
+
 
 
 namespace Ui {
@@ -19,6 +21,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    QSqlDatabase getbdd();
     ~MainWindow();
 
 private slots:
@@ -28,11 +31,15 @@ private slots:
 
     void on_leChercheNom_textChanged(const QString &arg1);
 
+    void on_btnAjouter_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase mydb;
 
     QString setQueryget();
+
+    //ajout_contact fenetre_ajout;
 };
 
 #endif // MAINWINDOW_H
