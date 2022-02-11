@@ -25,6 +25,7 @@ private slots:
     void on_checked_changed(int status);
 
     void on_lineEdit_textChanged(const QString &arg1);
+    void on_listContact_doubleClicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;

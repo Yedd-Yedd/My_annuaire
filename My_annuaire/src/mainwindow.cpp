@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->chkPro,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
 
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
+
     this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
     //this->mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
 
@@ -115,9 +116,49 @@ QString MainWindow::setQueryget()
     return query;
 }
 
-
-void MainWindow::on_btnAjouter_clicked()
+void MainWindow::on_listContact_doubleClicked(const QModelIndex &index)
 {
-
+    QString id = index.siblingAtColumn(0).data().toString();
+    QSqlQuery my_query(this->mydb);
+    QString infos = "";
+    if (this->mydb.open()){
+        my_query.prepare("Select * FROM contacts WHERE idContact= :id");
+        my_query.bindValue(":id", id);
+        my_query.exec();
+        my_query.next();
+        infos += "id = ";
+        infos += my_query.value("idContact").toString();
+        infos += "\nPrenom = ";
+        infos += my_query.value("Prenom").toString();
+        infos += "\nNom = ";
+        infos += my_query.value("Nom").toString();
+        infos += "\nSexe = ";
+        infos += my_query.value("Sexe").toString();
+        if (my_query.value("Entreprise").toString() != ""){
+            infos += "\nEntreprise = ";
+            infos += my_query.value("Entreprise").toString();
+        }
+        infos += "\nAdresse = ";
+        infos += my_query.value("rue").toString();
+        if (my_query.value("Complement").toString() != ""){
+            infos += " ";
+            infos += my_query.value("Complement").toString();
+        }
+        infos += " ";
+        infos += my_query.value("cp").toString();
+        infos += " ";
+        infos += my_query.value("Ville").toString();
+        if (my_query.value("mail").toString() != ""){
+            infos += "\nMail = ";
+            infos += my_query.value("mail").toString();
+        }
+        if (my_query.value("dtNaissance").toString() != ""){
+            infos += "\ndate naissance = ";
+            infos += my_query.value("dtNaissance").toString();
+        }
+        qDebug() <<infos;
+    }
+    ui->label->setText(infos);
+    this->mydb.close();
+    qDebug() << id;
 }
-
