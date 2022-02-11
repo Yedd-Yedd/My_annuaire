@@ -61,7 +61,7 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="leChercheNom">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -74,7 +74,7 @@
      <string>Recherche par nom</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btnAjouter">
     <property name="geometry">
      <rect>
       <x>140</x>

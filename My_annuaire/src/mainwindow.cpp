@@ -115,3 +115,9 @@ QString MainWindow::setQueryget()
     return query;
 }
 
+
+void MainWindow::on_btnAjouter_clicked()
+{
+
+}
+
