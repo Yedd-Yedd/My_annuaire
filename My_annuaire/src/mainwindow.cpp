@@ -72,7 +72,7 @@ void MainWindow::on_checked_changed(int status)
     //delete model;
 }
 
-void MainWindow::on_lineEdit_textChanged(const QString &arg1)
+void MainWindow::on_leChercheNom_textChanged(const QString &arg1)
 {
     QString req=this->setQueryget();
     QSqlQuery query(this->mydb);
@@ -162,3 +162,4 @@ void MainWindow::on_listContact_doubleClicked(const QModelIndex &index)
     this->mydb.close();
     qDebug() << id;
 }
+
