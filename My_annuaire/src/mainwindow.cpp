@@ -4,6 +4,7 @@
 #include "headers/adress.h"
 #include "headers/cprive.h"
 #include "headers/cprofessionnels.h"
+#include <QSqlError>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,13 +13,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
 
     connect(ui->chkPrive,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
     connect(ui->chkPro,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
 
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
     this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+    //this->mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
 
     if(this->mydb.open()){
         qDebug() << "DB ouverts";
@@ -29,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->listContact->setModel(model);
         ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-         this->mydb.close();
+        this->mydb.close();
     }
     else{
         qDebug() << "Err ouverture";
@@ -60,23 +61,57 @@ void MainWindow::on_checked_changed(int status)
     ui->listContact->reset();
     QSqlQueryModel *model= new QSqlQueryModel();
 
-    if(ui->chkPrive->isChecked() and ui->chkPro->isChecked()){
-        if(this->mydb.open()){
-            model->setQuery("SELECT idContact, nom, prenom, entreprise FROM contacts");
-        }
+    if(this->mydb.open()){
+        model->setQuery(this->setQueryget());
+        ui->listContact->setModel(model);
+        ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     }
-    else if(ui->chkPrive->isChecked()){
-        if(this->mydb.open()){
-            model->setQuery("SELECT idContact, nom, prenom, entreprise FROM contacts WHERE entreprise IS NULL");
-        }
-    }
-    else if(ui->chkPro->isChecked()){
-        if(this->mydb.open()){
-            model->setQuery("SELECT idContact, nom, prenom, entreprise FROM contacts WHERE entreprise IS NOT NULL");
-        }
-    }
-    ui->listContact->setModel(model);
-    ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     this->mydb.close();
+    //delete model;
 }
+
+void MainWindow::on_lineEdit_textChanged(const QString &arg1)
+{
+    QString req=this->setQueryget();
+    QSqlQuery query(this->mydb);
+
+
+    ui->listContact->reset();
+    QSqlQueryModel *model= new QSqlQueryModel();
+
+    if(ui->chkPrive->isChecked() and ui->chkPro->isChecked()){
+        req+=" WHERE nom LIKE :nom";
+    }
+    else{
+        req+=" AND nom LIKE :nom";
+    }
+    if(this->mydb.open()){
+        query.prepare(req);
+        query.bindValue(":nom",arg1+"%");
+
+        query.exec();
+        query.next();
+
+        model->setQuery(query);
+        ui->listContact->setModel(model);
+        ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    }
+}
+
+QString MainWindow::setQueryget()
+{
+    QString query;
+    if(ui->chkPrive->isChecked() and ui->chkPro->isChecked()){
+        query="SELECT idContact, nom, prenom, entreprise FROM contacts";
+
+    }
+    else if(ui->chkPrive->isChecked()){
+        query="SELECT idContact, nom, prenom FROM contacts WHERE entreprise IS NULL";
+    }
+    else if(ui->chkPro->isChecked()){
+        query="SELECT idContact, nom, prenom, entreprise FROM contacts WHERE entreprise IS NOT NULL";
+    }
+    return query;
+}
+
