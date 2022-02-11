@@ -27,6 +27,7 @@ CONFIG += c++11
 
 SOURCES += src/main.cpp \
            src/adress.cpp \
+           src/ajout_contact.cpp \
            src/contact.cpp \
            src/cprive.cpp \
            src/cprofessionnels.cpp \
@@ -36,6 +37,7 @@ SOURCES += src/main.cpp \
 
 HEADERS += headers/mainwindow.h \
     headers/adress.h \
+    headers/ajout_contact.h \
     headers/contact.h \
     headers/cprive.h \
     headers/cprofessionnels.h \
