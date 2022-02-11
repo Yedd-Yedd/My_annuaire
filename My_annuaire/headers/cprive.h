@@ -17,7 +17,7 @@ private:
     string date_naissance;
 public:
     CPrive(Adress*, string, int, string, string, char);
-    ~CPrive();
+    //~CPrive();
     Adress *getAddr() const;
     void setAddr(Adress *value);
     string getDate_naissance() const;

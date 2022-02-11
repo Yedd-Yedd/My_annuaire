@@ -15,7 +15,7 @@ private:
     Adress *addr;
 public:
     CProfessionnels(string, string, Adress*, int, string, string, char);
-    ~CProfessionnels();
+    //~CProfessionnels();
     string getNomE() const;
     void setNomE(const string &value);
     string getMail() const;
