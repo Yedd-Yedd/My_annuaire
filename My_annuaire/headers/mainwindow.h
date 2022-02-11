@@ -24,6 +24,8 @@ public:
 private slots:
     void on_checked_changed(int status);
 
+    void on_listContact_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase mydb;
