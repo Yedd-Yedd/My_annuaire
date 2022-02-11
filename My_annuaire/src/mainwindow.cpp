@@ -1,7 +1,6 @@
 #include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -16,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
 
     //this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
-    this->mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+    this->mydb.setDatabaseName("../My_annuaire/BDD/dbContacts.db");
 
     if(this->mydb.open()){
         qDebug() << "DB ouverts";
@@ -26,7 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
         ui->listContact->setModel(model);
         ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
         this->mydb.close();
     }
     else{
@@ -114,6 +112,7 @@ QString MainWindow::setQueryget()
 
 void MainWindow::on_listContact_doubleClicked(const QModelIndex &index)
 {
+
     QString id = index.siblingAtColumn(0).data().toString();
     QSqlQuery my_query(this->mydb);
     string infos = "";
@@ -132,37 +131,63 @@ void MainWindow::on_listContact_doubleClicked(const QModelIndex &index)
         QString nom = my_query.value("Nom").toString();
         QString mail = my_query.value("mail").toString();
         QString nomE = my_query.value("Entreprise").toString();
-        QString id = my_query.value("idContact").toString();
+
+        QString my_id = my_query.value("idContact").toString();
         QString tmp_sexe = my_query.value("Sexe").toString();
         QString date = my_query.value("dtNaissance").toString();
 
         string num = lib.toStdString();
         num = num.substr(0, num.find(","));
 
-        int i = stoi(num);
+        int i=0;
+        if (num != "")
+         i = stoi(num);
         char sexe = tmp_sexe.at(0).toLatin1();
 
-        qDebug() << "sexe = " << sexe << "date ="<< date;
         Adress *addr = new Adress
                 (i, lib.toStdString(), cp.toStdString(), city.toStdString(), comp.toStdString());
         if (nomE != "" && date == ""){
             CProfessionnels *cont = new CProfessionnels
                     (nomE.toStdString(), mail.toStdString(),
-                     addr, id.toInt(), nom.toStdString(),
+                     addr, my_id.toInt(), nom.toStdString(),
                      prenom.toStdString(), sexe);
             infos = cont->toString();
         }
-        else {
+        else if (nomE == "" && date != ""){
             CPrive *cont = new CPrive
-                    (addr, date.toStdString(), i, nom.toStdString(),
+                    (addr, date.toStdString(), my_id.toInt(), nom.toStdString(),
                      prenom.toStdString(), sexe);
             infos = cont->toString();
         }
-        qDebug() << QString::fromStdString(infos);
+        qDebug() << "infos ="<< QString::fromStdString(infos);
     }
 
     ui->label->setText(QString::fromStdString(infos));
     this->mydb.close();
-    qDebug() << id;
 }
 
+
+void MainWindow::on_btnSupprimer_clicked()
+{
+    QString rowidx = ui->listContact->selectionModel()->currentIndex().data(0).toString();
+    QString t=ui->listContact->selectionModel()->currentIndex().siblingAtColumn(0).data().toString();
+
+    QSqlQuery my_query(this->mydb);
+    if (this->mydb.open()){
+        QString id = my_query.value("idContact").toString();
+        my_query.prepare("DELETE FROM contacts WHERE idContact= :t");
+        my_query.bindValue(":t", t);
+        my_query.exec();
+        my_query.next();
+        this->mydb.close();
+    }
+    ui->listContact->reset();
+        if(this->mydb.open()){
+            qDebug() << "DB ouverts";
+            QSqlQueryModel *model= new QSqlQueryModel();
+            model->setQuery("SELECT idContact, nom, prenom, entreprise FROM contacts");
+            ui->listContact->setModel(model);
+            ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+            this->mydb.close();
+        }
+}

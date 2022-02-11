@@ -38,11 +38,11 @@
     <attribute name="horizontalHeaderCascadingSectionResizes">
      <bool>false</bool>
     </attribute>
-    <attribute name="horizontalHeaderMinimumSectionSize">
-     <number>35</number>
-    </attribute>
     <attribute name="horizontalHeaderDefaultSectionSize">
      <number>100</number>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>35</number>
     </attribute>
     <attribute name="verticalHeaderVisible">
      <bool>false</bool>
@@ -119,6 +119,19 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnSupprimer">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>380</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Supprimer</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -126,7 +139,7 @@
      <x>0</x>
      <y>0</y>
      <width>814</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

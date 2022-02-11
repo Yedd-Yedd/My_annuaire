@@ -38,6 +38,8 @@ private slots:
 
     void on_leChercheNom_textChanged(const QString &arg1);
 
+    void on_btnSupprimer_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase mydb;
