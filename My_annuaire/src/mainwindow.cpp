@@ -13,8 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->chkPro,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
 
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
-
-    //this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+    // bon path si le dossier build est au dessus de : /My_annuaire/BDD/ dans larbre
     this->mydb.setDatabaseName("../My_annuaire/BDD/dbContacts.db");
 
     if(this->mydb.open()){
