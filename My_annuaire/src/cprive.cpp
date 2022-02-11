@@ -36,13 +36,13 @@ void CPrive::setDate_naissance(const string &value)
       size_t i = -1;
       int bs = 0;
       while (tmp[++i] != '\0'){
-          if ((tmp[i] == '/' && i == 2) ||
-              (tmp[i] == '/' && i == 5))
+          if ((tmp[i] == '-' && i == 4) ||
+              (tmp[i] == '-' && i == 7))
                bs++;
       }
       i = 0;
       while(tmp[i] != '\0'){
-          if (tmp[i] == '/' || (tmp[i] >= '0' && tmp[i] <= '9'))
+          if (tmp[i] == '-' || (tmp[i] >= '0' && tmp[i] <= '9'))
             i++;
           else
               break;
@@ -61,4 +61,13 @@ void CPrive::setDate_naissance(const string &value)
       qDebug() << "CPrive.setDate_naissance(value) << value is empty";
   }
 
+}
+
+string CPrive::toString()
+{
+    string contact=Contact::toString();
+    ostringstream oss;
+    oss<< "date de naissance : "<<this->getDate_naissance()<<endl;
+    contact += oss.str() + getAddr()->toString();
+    return contact;
 }
