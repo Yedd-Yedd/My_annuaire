@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include "error_handler.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ private:
     int id;
 public:
     Contact(int, string, string, char);
-    //~Contact();
+    ~Contact();
     
     string getNom() const;
     void setNom(const string &value);

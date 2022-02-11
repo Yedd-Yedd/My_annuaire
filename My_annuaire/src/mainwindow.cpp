@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+    mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
 
     if(mydb.open()){
         qDebug() << "DB ouverts";

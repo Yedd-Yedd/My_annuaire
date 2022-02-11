@@ -10,10 +10,10 @@ Contact::Contact(int id, string nom, string prenom, char genre)
     this->setGenre(genre);
 }
 
-/*Contact::~Contact()
+Contact::~Contact()
 {
 
-}*/
+}
 
 string Contact::getNom() const
 {
@@ -22,15 +22,20 @@ string Contact::getNom() const
 
 void Contact::setNom(const string &value)
 {
-    string res=value;
-    if(value.length()<=30){
-        for(int i=0;i<res.length();i++){
-            res[i]=toupper(res[i]);
+    if(checkStringVal(value) == true){
+        string res=value;
+        if(value.length()<=30){
+            for(int i=0;i<res.length();i++){
+                res[i]=toupper(res[i]);
+            }
+            this->nom=res;
         }
-        this->nom=res;
+        else{
+            throw "Erreur dans le Nom";
+        }
     }
-    else{
-        throw "Erreur dans le Nom";
+    else {
+        qDebug() << "Contact.setNom(value) << value is empty";
     }
 }
 
@@ -41,15 +46,19 @@ string Contact::getPrenom() const
 
 void Contact::setPrenom(const string &value)
 {
-    string res=value;
-    if(value.length()<=30){
-        res[0]=toupper(value[0]);
-        this->prenom=res;
+    if(checkStringVal(value) == true){
+        string res=value;
+        if(value.length()<=30){
+            res[0]=toupper(value[0]);
+            this->prenom=res;
+        }
+        else{
+            throw "Erreur dans le prenom";
+        }
     }
     else{
-        throw "Erreur dans le prenom";
+         qDebug() << "Contact.setPrenom(value) << value is empty";
     }
-
 }
 
 char Contact::getGenre() const

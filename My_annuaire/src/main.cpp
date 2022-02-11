@@ -2,6 +2,10 @@
 #include <QApplication>
 #include "headers/contact.h"
 #include "headers/adress.h"
+
+
+
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

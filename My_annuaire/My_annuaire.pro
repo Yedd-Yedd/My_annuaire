@@ -30,6 +30,7 @@ SOURCES += src/main.cpp \
            src/contact.cpp \
            src/cprive.cpp \
            src/cprofessionnels.cpp \
+           src/error_handler.cpp \
            src/mainwindow.cpp
 
 
@@ -37,7 +38,8 @@ HEADERS += headers/mainwindow.h \
     headers/adress.h \
     headers/contact.h \
     headers/cprive.h \
-    headers/cprofessionnels.h
+    headers/cprofessionnels.h \
+    headers/error_handler.h
 
 FORMS += UI/mainwindow.ui
 

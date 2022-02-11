@@ -15,15 +15,20 @@ string CProfessionnels::getNomE() const
 
 void CProfessionnels::setNomE(const string &value)
 {
-    string res=value;
-    if(value.length()<=50){
-        for(int i=0;i<res.length();i++){
-            res[i]=toupper(res[i]);
+    if (checkStringVal(value) == true){
+        string res=value;
+        if(value.length()<=50){
+            for(int i=0;i<res.length();i++){
+                res[i]=toupper(res[i]);
+            }
+            this->nomE=res;
         }
-        this->nomE=res;
+        else{
+            throw "Erreur dans le Nom de l'entreprise";
+        }
     }
-    else{
-        throw "Erreur dans le Nom de l'entreprise";
+    else {
+        qDebug() << "setNomE(value) << value is empty";
     }
 }
 
@@ -34,12 +39,18 @@ string CProfessionnels::getMail() const
 
 void CProfessionnels::setMail(const string &value)
 {
-    regex reg(".*@([a-z]|[A-Z])*\\.(com|fr)");
-    if(regex_match(value,reg)){
-        this->mail=value;
+    if (checkStringVal(value) == true)
+    {
+        regex reg(".*@([a-z]|[A-Z])*\\.(com|fr)");
+        if(regex_match(value,reg)){
+           this->mail=value;
+        }
+        else{
+            throw "Erreur mail";
+        }
     }
-    else{
-        throw "Erreur mail";
+    else {
+        qDebug() << "setMail(value) << value is empty";
     }
 }
 
@@ -50,7 +61,11 @@ Adress *CProfessionnels::getAddr() const
 
 void CProfessionnels::setAddr(Adress *value)
 {
-    addr = value;
+    if (value != nullptr)
+        addr = value;
+    else {
+        qDebug() << "CProfessionnels.setAddr(*value) << value is null";
+    }
 }
 
 string CProfessionnels::toString()
