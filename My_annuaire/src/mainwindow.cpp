@@ -7,14 +7,18 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-
     connect(ui->chkPrive,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
     connect(ui->chkPro,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
 
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
+<<<<<<< HEAD
     // bon path si le dossier build est au dessus de : /My_annuaire/BDD/ dans larbre
     this->mydb.setDatabaseName("../My_annuaire/BDD/dbContacts.db");
+=======
+
+    this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+    //this->mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+>>>>>>> 68341e963406037598733d95f211283f134ec9d9
 
     if(this->mydb.open()){
         qDebug() << "DB ouverts";
@@ -30,18 +34,11 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "Err ouverture";
     }
 
-    Contact *c = new Contact(1,"jeanne","aurelien",'m');
-    qDebug()<< QString::fromStdString(c->toString());
+}
 
-    Adress *a = new Adress(3,"place truc","14400","Bayeux");
-    qDebug()<< QString::fromStdString(a->toString());
-
-    qDebug()<<"----------------------Pro---------------------";
-    CProfessionnels *pro=new CProfessionnels("entr","entre@mail.fr",a,1,"jeanne","aurelien",'m');
-    qDebug()<< QString::fromStdString(pro->toString());
-    
-    CPrive *b = new CPrive(a, "22/01/4199", 1, "Ted", "Tedd", 'm');
-
+QSqlDatabase MainWindow::getbdd()
+{
+    return this->mydb;
 }
 
 
@@ -91,6 +88,7 @@ void MainWindow::on_leChercheNom_textChanged(const QString &arg1)
         ui->listContact->setModel(model);
         ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     }
+    mydb.close();
 }
 
 QString MainWindow::setQueryget()
@@ -166,6 +164,7 @@ void MainWindow::on_listContact_doubleClicked(const QModelIndex &index)
 }
 
 
+<<<<<<< HEAD
 void MainWindow::on_btnSupprimer_clicked()
 {
     QString rowidx = ui->listContact->selectionModel()->currentIndex().data(0).toString();
@@ -190,3 +189,28 @@ void MainWindow::on_btnSupprimer_clicked()
             this->mydb.close();
         }
 }
+=======
+void MainWindow::on_btnAjouter_clicked()
+{
+    ajout_contact fenetre_ajout(this);
+    fenetre_ajout.setModal(true);
+    fenetre_ajout.exec();
+    ui->listContact->reset();
+    if(this->mydb.open()){
+        qDebug() << "DB ouverts";
+
+        QSqlQueryModel *model= new QSqlQueryModel();
+        model->setQuery("SELECT idContact, nom, prenom, entreprise FROM contacts");
+
+        ui->listContact->setModel(model);
+        ui->listContact->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+        this->mydb.close();
+    }
+    else{
+        qDebug() << "Err ouverture";
+    }
+
+}
+
+>>>>>>> 68341e963406037598733d95f211283f134ec9d9

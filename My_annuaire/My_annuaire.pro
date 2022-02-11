@@ -27,6 +27,7 @@ CONFIG += c++11
 
 SOURCES += src/main.cpp \
            src/adress.cpp \
+           src/ajout_contact.cpp \
            src/contact.cpp \
            src/cprive.cpp \
            src/cprofessionnels.cpp \
@@ -39,9 +40,11 @@ HEADERS += headers/mainwindow.h \
     headers/contact.h \
     headers/cprive.h \
     headers/cprofessionnels.h \
-    headers/error_handler.h
+    headers/error_handler.h \
+    headers/ajout_contact.h
 
 FORMS += UI/mainwindow.ui \
+    UI/ajout_contact_test.ui \
     UI/ajout_contact.ui
 
 

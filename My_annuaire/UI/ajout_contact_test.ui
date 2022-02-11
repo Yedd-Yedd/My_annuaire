@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ajout_contact</class>
- <widget class="QDialog" name="ajout_contact">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>856</width>
-    <height>498</height>
+    <width>760</width>
+    <height>518</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QRadioButton" name="rbPro">
+  <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>20</y>
-     <width>91</width>
-     <height>22</height>
+     <x>120</x>
+     <y>440</y>
+     <width>341</width>
+     <height>32</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Professionel</string>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
    </property>
   </widget>
   <widget class="QRadioButton" name="rbPrive">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>20</y>
+     <x>260</x>
+     <y>40</y>
      <width>91</width>
      <height>22</height>
     </rect>
@@ -42,22 +45,73 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QWidget" name="w_prive" native="true">
+  <widget class="QRadioButton" name="rbPro">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>250</y>
+     <x>390</x>
+     <y>40</y>
+     <width>91</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Professionel</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>80</y>
+     <width>221</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="lblNom">
+      <property name="text">
+       <string>Nom :</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="lineEdit"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="lblPrenom">
+      <property name="text">
+       <string>Prenom :</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="lineEdit_2"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="lblGenre">
+      <property name="text">
+       <string>Genre :</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="lineEdit_3"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>270</y>
      <width>251</width>
      <height>89</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridPrive">
     <item row="0" column="1">
-     <widget class="QDateEdit" name="dateNaissance">
-      <property name="displayFormat">
-       <string>dd/MM/yyyy</string>
-      </property>
-     </widget>
+     <widget class="QDateEdit" name="dateNaissance"/>
     </item>
     <item row="0" column="0">
      <widget class="QLabel" name="lblDate">
@@ -68,11 +122,11 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="w_pro" native="true">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>240</y>
+     <x>30</x>
+     <y>260</y>
      <width>251</width>
      <height>111</height>
     </rect>
@@ -100,53 +154,11 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="layoutWidget_3">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>60</y>
-     <width>221</width>
-     <height>151</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="lblNom">
-      <property name="text">
-       <string>Nom :</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="leNom"/>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="lblPrenom">
-      <property name="text">
-       <string>Prenom :</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="lePrenom"/>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="lblGenre">
-      <property name="text">
-       <string>Genre :</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="leGenre"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget_4">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>230</y>
+     <x>370</x>
+     <y>250</y>
      <width>378</width>
      <height>121</height>
     </rect>
@@ -223,20 +235,40 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>390</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Enregistrer</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

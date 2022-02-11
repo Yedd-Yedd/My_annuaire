@@ -13,6 +13,8 @@
 #include "headers/adress.h"
 #include "headers/cprive.h"
 #include "headers/cprofessionnels.h"
+#include "headers/ajout_contact.h"
+
 
 using namespace std;
 
@@ -26,6 +28,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    QSqlDatabase getbdd();
     ~MainWindow();
 
     string toString();
@@ -38,13 +41,19 @@ private slots:
 
     void on_leChercheNom_textChanged(const QString &arg1);
 
+<<<<<<< HEAD
     void on_btnSupprimer_clicked();
+=======
+    void on_btnAjouter_clicked();
+>>>>>>> 68341e963406037598733d95f211283f134ec9d9
 
 private:
     Ui::MainWindow *ui;
     QSqlDatabase mydb;
 
     QString setQueryget();
+
+    //ajout_contact fenetre_ajout;
 };
 
 #endif // MAINWINDOW_H
