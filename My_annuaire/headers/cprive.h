@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cstring>
 #include <string>
+#include <sstream>
 
 
 #include <QDebug>
@@ -22,6 +23,8 @@ public:
     void setAddr(Adress *value);
     string getDate_naissance() const;
     void setDate_naissance(const string &value);
+
+    string toString();
 };
 
 #endif // CPRIVE_H

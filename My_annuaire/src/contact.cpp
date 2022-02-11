@@ -68,7 +68,7 @@ char Contact::getGenre() const
 
 void Contact::setGenre(char value)
 {
-    if(value=='h' or value=='H' or value=='f' or value=='F'){
+    if(value=='m' or value=='M' or value=='f' or value=='F'){
         genre = toupper(value);
     }
     else{

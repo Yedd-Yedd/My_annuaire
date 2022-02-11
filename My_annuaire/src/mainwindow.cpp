@@ -1,10 +1,6 @@
 #include "headers/mainwindow.h"
 #include "ui_mainwindow.h"
-#include "headers/contact.h"
-#include "headers/adress.h"
-#include "headers/cprive.h"
-#include "headers/cprofessionnels.h"
-#include <QSqlError>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
 
-    this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
-    //this->mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+    //this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+    this->mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
 
     if(this->mydb.open()){
         qDebug() << "DB ouverts";
@@ -37,17 +33,17 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "Err ouverture";
     }
 
-    Contact *c = new Contact(1,"jeanne","aurelien",'h');
+    Contact *c = new Contact(1,"jeanne","aurelien",'m');
     qDebug()<< QString::fromStdString(c->toString());
 
     Adress *a = new Adress(3,"place truc","14400","Bayeux");
     qDebug()<< QString::fromStdString(a->toString());
 
     qDebug()<<"----------------------Pro---------------------";
-    CProfessionnels *pro=new CProfessionnels("entr","entre@mail.fr",a,1,"jeanne","aurelien",'h');
+    CProfessionnels *pro=new CProfessionnels("entr","entre@mail.fr",a,1,"jeanne","aurelien",'m');
     qDebug()<< QString::fromStdString(pro->toString());
     
-    CPrive *b = new CPrive(a, "22/01/4199", 1, "Ted", "Tedd", 'h');
+    CPrive *b = new CPrive(a, "22/01/4199", 1, "Ted", "Tedd", 'm');
 
 }
 
@@ -120,45 +116,52 @@ void MainWindow::on_listContact_doubleClicked(const QModelIndex &index)
 {
     QString id = index.siblingAtColumn(0).data().toString();
     QSqlQuery my_query(this->mydb);
-    QString infos = "";
+    string infos = "";
     if (this->mydb.open()){
+
         my_query.prepare("Select * FROM contacts WHERE idContact= :id");
         my_query.bindValue(":id", id);
         my_query.exec();
         my_query.next();
-        infos += "id = ";
-        infos += my_query.value("idContact").toString();
-        infos += "\nPrenom = ";
-        infos += my_query.value("Prenom").toString();
-        infos += "\nNom = ";
-        infos += my_query.value("Nom").toString();
-        infos += "\nSexe = ";
-        infos += my_query.value("Sexe").toString();
-        if (my_query.value("Entreprise").toString() != ""){
-            infos += "\nEntreprise = ";
-            infos += my_query.value("Entreprise").toString();
+
+        QString lib = my_query.value("rue").toString();
+        QString comp = my_query.value("Complement").toString();
+        QString cp = my_query.value("cp").toString();
+        QString city = my_query.value("Ville").toString();
+        QString prenom = my_query.value("Prenom").toString();
+        QString nom = my_query.value("Nom").toString();
+        QString mail = my_query.value("mail").toString();
+        QString nomE = my_query.value("Entreprise").toString();
+        QString id = my_query.value("idContact").toString();
+        QString tmp_sexe = my_query.value("Sexe").toString();
+        QString date = my_query.value("dtNaissance").toString();
+
+        string num = lib.toStdString();
+        num = num.substr(0, num.find(","));
+
+        int i = stoi(num);
+        char sexe = tmp_sexe.at(0).toLatin1();
+
+        qDebug() << "sexe = " << sexe << "date ="<< date;
+        Adress *addr = new Adress
+                (i, lib.toStdString(), cp.toStdString(), city.toStdString(), comp.toStdString());
+        if (nomE != "" && date == ""){
+            CProfessionnels *cont = new CProfessionnels
+                    (nomE.toStdString(), mail.toStdString(),
+                     addr, id.toInt(), nom.toStdString(),
+                     prenom.toStdString(), sexe);
+            infos = cont->toString();
         }
-        infos += "\nAdresse = ";
-        infos += my_query.value("rue").toString();
-        if (my_query.value("Complement").toString() != ""){
-            infos += " ";
-            infos += my_query.value("Complement").toString();
+        else {
+            CPrive *cont = new CPrive
+                    (addr, date.toStdString(), i, nom.toStdString(),
+                     prenom.toStdString(), sexe);
+            infos = cont->toString();
         }
-        infos += " ";
-        infos += my_query.value("cp").toString();
-        infos += " ";
-        infos += my_query.value("Ville").toString();
-        if (my_query.value("mail").toString() != ""){
-            infos += "\nMail = ";
-            infos += my_query.value("mail").toString();
-        }
-        if (my_query.value("dtNaissance").toString() != ""){
-            infos += "\ndate naissance = ";
-            infos += my_query.value("dtNaissance").toString();
-        }
-        qDebug() <<infos;
+        qDebug() << QString::fromStdString(infos);
     }
-    ui->label->setText(infos);
+
+    ui->label->setText(QString::fromStdString(infos));
     this->mydb.close();
     qDebug() << id;
 }
