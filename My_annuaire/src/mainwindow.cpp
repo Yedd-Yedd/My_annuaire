@@ -12,11 +12,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    /*
     mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+
     connect(ui->chkPrive,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
     connect(ui->chkPro,SIGNAL(stateChanged(int)),this,SLOT(on_checked_changed(int)));
-*/
+
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
     this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
 
