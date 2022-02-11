@@ -13,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->mydb = QSqlDatabase::addDatabase("QSQLITE");
 
-    //this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
-    this->mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+    this->mydb.setDatabaseName("C:\\Users\\audit\\OneDrive\\Documents\\Formation C++\\QT\\Projet\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
+    //this->mydb.setDatabaseName("C:\\Users\\Yed\\My_annuaire\\My_annuaire\\BDD\\dbContacts.db");
 
     if(this->mydb.open()){
         qDebug() << "DB ouverts";
@@ -30,18 +30,6 @@ MainWindow::MainWindow(QWidget *parent) :
     else{
         qDebug() << "Err ouverture";
     }
-
-    Contact *c = new Contact(1,"jeanne","aurelien",'m');
-    qDebug()<< QString::fromStdString(c->toString());
-
-    Adress *a = new Adress(3,"place truc","14400","Bayeux");
-    qDebug()<< QString::fromStdString(a->toString());
-
-    qDebug()<<"----------------------Pro---------------------";
-    CProfessionnels *pro=new CProfessionnels("entr","entre@mail.fr",a,1,"jeanne","aurelien",'m');
-    qDebug()<< QString::fromStdString(pro->toString());
-    
-    CPrive *b = new CPrive(a, "22/01/4199", 1, "Ted", "Tedd", 'm');
 
 }
 
