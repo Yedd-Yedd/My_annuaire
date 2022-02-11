@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>735</width>
-    <height>410</height>
+    <width>814</width>
+    <height>557</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
+      <y>80</y>
       <width>401</width>
       <height>192</height>
      </rect>
@@ -51,8 +51,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>30</y>
+      <x>470</x>
+      <y>90</y>
       <width>261</width>
       <height>171</height>
      </rect>
@@ -65,17 +65,20 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>260</y>
+      <y>20</y>
       <width>301</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Recherche par nom</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>310</y>
+      <x>140</x>
+      <y>380</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -84,11 +87,11 @@
      <string>Ajouter</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="chkPrive">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>220</y>
+      <x>100</x>
+      <y>300</y>
       <width>78</width>
       <height>22</height>
      </rect>
@@ -100,11 +103,11 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2">
+   <widget class="QCheckBox" name="chkPro">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>220</y>
+      <x>220</x>
+      <y>300</y>
       <width>78</width>
       <height>22</height>
      </rect>
@@ -122,7 +125,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>735</width>
+     <width>814</width>
      <height>21</height>
     </rect>
    </property>

@@ -39,7 +39,8 @@ HEADERS += headers/mainwindow.h \
     headers/cprive.h \
     headers/cprofessionnels.h
 
-FORMS += UI/mainwindow.ui
+FORMS += UI/mainwindow.ui \
+    UI/ajout_contact.ui
 
 
 # Default rules for deployment.
