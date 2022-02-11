@@ -21,9 +21,11 @@ public:
     ~MainWindow();
 
 private slots:
+    void on_checked_changed(int status);
 
 private:
     Ui::MainWindow *ui;
+    QSqlDatabase mydb;
 };
 
 #endif // MAINWINDOW_H
