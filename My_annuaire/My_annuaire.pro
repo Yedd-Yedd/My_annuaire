@@ -41,7 +41,8 @@ HEADERS += headers/mainwindow.h \
     headers/cprofessionnels.h \
     headers/error_handler.h
 
-FORMS += UI/mainwindow.ui
+FORMS += UI/mainwindow.ui \
+    UI/ajout_contact.ui
 
 
 # Default rules for deployment.
